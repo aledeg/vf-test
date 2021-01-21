@@ -14,5 +14,6 @@ default:
                     symfony: ~
         Behatch\Extension: ~
         FriendsOfBehat\SymfonyExtension:
+            bootstrap: features/bootstrap/bootstrap.php
             kernel:
                 environment: test

@@ -10,6 +10,14 @@ Feature: Widget API
     @createSchema
     Scenario: listing widgets
         Given I send a "GET" request to "api/widgets"
+        Then the response status code should be 401
+
+        Given I add "X-AUTH-TOKEN" header equal to "unknown"
+        And I send a "GET" request to "api/widgets"
+        Then the response status code should be 401
+
+        Given I add "X-AUTH-TOKEN" header equal to "behat"
+        And I send a "GET" request to "api/widgets"
         Then the response status code should be 200
         And the response should be in JSON
         And the JSON should be equal to:
@@ -19,6 +27,7 @@ Feature: Widget API
 
     Scenario: creating a new widget
         Given I add "content-type" header equal to "application/json"
+        And I add "X-AUTH-TOKEN" header equal to "behat"
         And I send a "POST" request to "api/widgets" with body:
         """
         {
@@ -30,6 +39,7 @@ Feature: Widget API
         And the JSON node "detail" should be equal to 'The type of the "name" attribute must be "string", "NULL" given.'
 
         Given I add "content-type" header equal to "application/json"
+        And I add "X-AUTH-TOKEN" header equal to "behat"
         And I send a "POST" request to "api/widgets" with body:
         """
         {
@@ -45,6 +55,7 @@ Feature: Widget API
         | violations[1].message | This value should not be null. |
 
         Given I add "content-type" header equal to "application/json"
+        And I add "X-AUTH-TOKEN" header equal to "behat"
         And I send a "POST" request to "api/widgets" with body:
         """
         {
@@ -58,6 +69,7 @@ Feature: Widget API
         | violations[0].message | This value should not be blank. |
         
         Given I add "content-type" header equal to "application/json"
+        And I add "X-AUTH-TOKEN" header equal to "behat"
         And I send a "POST" request to "api/widgets" with body:
         """
         {
@@ -71,6 +83,7 @@ Feature: Widget API
         | violations[0].message | The widget name must contain at most 20 characters. |
 
         Given I add "content-type" header equal to "application/json"
+        And I add "X-AUTH-TOKEN" header equal to "behat"
         And I send a "POST" request to "api/widgets" with body:
         """
         {
@@ -85,6 +98,7 @@ Feature: Widget API
         | violations[0].message | The widget description must contain at most 100 characters. |
 
         Given I add "content-type" header equal to "application/json"
+        And I add "X-AUTH-TOKEN" header equal to "behat"
         And I send a "POST" request to "api/widgets" with body:
         """
         {
@@ -100,6 +114,7 @@ Feature: Widget API
         | description | Description |
 
         Given I add "content-type" header equal to "application/json"
+        And I add "X-AUTH-TOKEN" header equal to "behat"
         And I send a "POST" request to "api/widgets" with body:
         """
         {
@@ -113,7 +128,8 @@ Feature: Widget API
         | name | Name wo/ description |
 
     Scenario: listing widgets
-        Given I send a "GET" request to "api/widgets"
+        Given I add "X-AUTH-TOKEN" header equal to "behat"
+        And I send a "GET" request to "api/widgets"
         Then the response status code should be 200
         And the response should be in JSON
         And the JSON nodes should be equal to:
@@ -123,7 +139,8 @@ Feature: Widget API
         | [1].id | 2 |
         | [1].name | Name wo/ description |
 
-        Given I send a "GET" request to "api/widgets/1"
+        Given I add "X-AUTH-TOKEN" header equal to "behat"
+        And I send a "GET" request to "api/widgets/1"
         Then the response status code should be 200
         And the response should be in JSON
         And the JSON nodes should be equal to:
@@ -131,19 +148,22 @@ Feature: Widget API
         | name | Name w/ description |
         | description | Description |
 
-        Given I send a "GET" request to "api/widgets/2"
+        Given I add "X-AUTH-TOKEN" header equal to "behat"
+        And I send a "GET" request to "api/widgets/2"
         Then the response status code should be 200
         And the response should be in JSON
         And the JSON nodes should be equal to:
         | id | 2 |
         | name | Name wo/ description |
 
-        Given I send a "GET" request to "api/widgets/3"
+        Given I add "X-AUTH-TOKEN" header equal to "behat"
+        And I send a "GET" request to "api/widgets/3"
         Then the response status code should be 404
         And the response should be in JSON
 
     Scenario: Updating widgets
         Given I add "content-type" header equal to "application/merge-patch+json"
+        And I add "X-AUTH-TOKEN" header equal to "behat"
         And I send a "PATCH" request to "api/widgets/1" with body:
         """
         {
@@ -158,6 +178,7 @@ Feature: Widget API
         | description | Description |
 
         Given I add "content-type" header equal to "application/merge-patch+json"
+        And I add "X-AUTH-TOKEN" header equal to "behat"
         And I send a "PATCH" request to "api/widgets/1" with body:
         """
         {
@@ -172,6 +193,7 @@ Feature: Widget API
         And the JSON node 'description' should not exist
 
         Given I add "content-type" header equal to "application/merge-patch+json"
+        And I add "X-AUTH-TOKEN" header equal to "behat"
         And I send a "PATCH" request to "api/widgets/1" with body:
         """
         {
@@ -186,6 +208,7 @@ Feature: Widget API
         | description | New description |
 
         Given I add "content-type" header equal to "application/merge-patch+json"
+        And I add "X-AUTH-TOKEN" header equal to "behat"
         And I send a "PATCH" request to "api/widgets/3" with body:
         """
         {
@@ -195,9 +218,11 @@ Feature: Widget API
         Then the response status code should be 404
 
     Scenario: Deleting widgets
-        Given I send a "DELETE" request to "api/widgets/2"
+        Given I add "X-AUTH-TOKEN" header equal to "behat"
+        And I send a "DELETE" request to "api/widgets/2"
         Then the response status code should be 204
 
-        Given I send a "DELETE" request to "api/widgets/2"
+        Given I add "X-AUTH-TOKEN" header equal to "behat"
+        And I send a "DELETE" request to "api/widgets/2"
         Then the response status code should be 404
         And the response should be in JSON
