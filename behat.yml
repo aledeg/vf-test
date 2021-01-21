@@ -1,0 +1,18 @@
+default:
+    suites:
+        default:
+            contexts:
+                - behatch:context:json
+                - behatch:context:rest
+                - Behat\MinkExtension\Context\MinkContext
+                - App\Tests\Behat\FeatureContext: { doctrine: '@doctrine.orm.entity_manager' }
+
+    extensions:
+        Behat\MinkExtension:
+            sessions:
+                default:
+                    symfony: ~
+        Behatch\Extension: ~
+        FriendsOfBehat\SymfonyExtension:
+            kernel:
+                environment: test
