@@ -1,0 +1,179 @@
+{
+	"info": {
+		"_postman_id": "c28ef21b-ce02-41c3-b03e-2418690d91c2",
+		"name": "vf-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get widget collection",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-AUTH-TOKEN",
+						"value": "Alexis",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost/api/widgets",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"widgets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get widget item",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-AUTH-TOKEN",
+						"value": "Alexis",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost/api/widgets/1",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"widgets",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create widget item",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-AUTH-TOKEN",
+						"value": "Alexis",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Name w/ description\",\n    \"description\": \"Description\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/api/widgets",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"widgets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete widget item",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "X-AUTH-TOKEN",
+						"value": "Alexis",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost/api/widgets/1",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"widgets",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update widget item",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "X-AUTH-TOKEN",
+						"value": "Alexis",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/merge-patch+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"New\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/api/widgets/2",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"widgets",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get API doc (openapi format)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-AUTH-TOKEN",
+						"value": "Alexis",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost/api/docs",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"docs"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
